@@ -19,12 +19,22 @@ do
 	fi
       ((count++))
 done
-singlet[0]=$head
-singlet[1]=$tail
+singlet1[0]=$head
+singlet1[1]=$tail
 percentHead=$(( ( $head * 100 ) / 6 ))
 percentTail=$(( ($tail * 100 ) / 6 ))
    
-
+echo "Soting Singlet"
+sort -n <(printf "%s\n" "${singlet1[@]}")
+if [ $head -gt $tail ]
+then
+	echo"Wining combination is Head"
+elif [ $head -lt $tail ]
+then
+       echo "Wining combination is Tail"
+else
+	echo "Both Combinations are equal"
+fi
 #Code For Doublet Combination
 
 HH=0
@@ -56,10 +66,31 @@ do
         fi
         ((count++))
 done
+doublet[0]=$HH
+doublet[1]=$HT
+doublet[2]=$TH
+doublet[3]=$TT
 percentHH=$(( ($HH * 100 ) / $flip1 ))
 percentHT=$(( ($HT * 100 ) / $flip1 ))
 percentTH=$(( ($TH * 100 ) / $flip1 ))
 percentTT=$(( ($TT * 100 ) / $flip1 ))
+
+echo "Sorting Doublet Combination"
+sort -n <(printf "%s\n" "${doublet[@]}" )
+
+if [ $HH -gt $HT ] && [ $HH -gt $TH ] && [ $HH -gt $TT ]
+then
+        echo "winning is  HH"
+elif [ $HT -gt $HH ] && [ $HT -gt $TH ] && [ $HT -gt $TT ]
+then
+	echo "Winning is HT"
+elif [ $TH -gt $HH ] && [ $TH -gt $TT ] && [ $TH -gt $HT ] 
+then
+	echo "Winning is TH"
+else
+	echo "Winning is TT"
+fi
+
 
 
 #Code for Triplet Combination
@@ -113,6 +144,15 @@ do
 	fi
 	((count1++))
 done
+triplet[0]=$HHH
+triplet[1]=$HTH
+triplet[2]=$HTT
+triplet[3]=$HHT
+triplet[4]=$TTT
+triplet[5]=$THH
+triplet[6]=$THT
+triplet[7]=$TTH
+
 percentHHH=$(( ( $HHH * 100 ) / $flip2 ))
 percentHTH=$(( ( $HTH * 100 ) / $flip2 ))
 percentHTT=$(( ( $HTT * 100 ) / $flip2 ))
@@ -121,4 +161,7 @@ percentTTT=$(( ( $TTT * 100 ) / $flip2 ))
 percentTHT=$(( ( $THT * 100 ) / $flip2 ))
 percentTTH=$(( ( $TTH * 100 ) / $flip2 ))
 percentTHH=$(( ( $THH * 100 ) / $flip2 ))
+
+echo "Sorting Triplet"
+sort -n <(printf "%s\n" "${triplet[@]}" ) 
 
