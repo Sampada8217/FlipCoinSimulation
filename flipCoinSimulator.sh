@@ -4,26 +4,23 @@ head=0
 tail=0
 while [ $count -ne 6 ]
 do  
-        counter=0
-        declare -A singlet
+       	counter=0
+       	declare -A singlet
 	random=$((RANDOM%2))
 	if [ $random -eq 1 ]
 	then
-	       echo "Head"
-               singlet[counter++]="Head"
-               ((head++))
+              singlet[counter++]="Head"
+               	((head++))
 	else
-		echo "Tail"
-              singlet[counter++]="Tail"
-   	       ((tail++))
+	      singlet[counter++]="Tail"
+   	      	((tail++))
 	fi
-      ((count++))
+      		((count++))
 done
 singlet1[0]=$head
 singlet1[1]=$tail
 percentHead=$(( ( $head * 100 ) / 6 ))
 percentTail=$(( ($tail * 100 ) / 6 ))
-   
 echo "Soting Singlet"
 sort -n <(printf "%s\n" "${singlet1[@]}")
 if [ $head -gt $tail ]
@@ -35,6 +32,7 @@ then
 else
 	echo "Both Combinations are equal"
 fi
+
 #Code For Doublet Combination
 
 HH=0
@@ -91,9 +89,8 @@ else
 	echo "Winning is TT"
 fi
 
-
-
 #Code for Triplet Combination
+
 echo "Enter no of flip"
 read flip2
 HHH=0
